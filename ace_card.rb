@@ -1,3 +1,5 @@
+require_relative 'card'
+
 class AceCard < Card
   def init_value
     { min: 1 , max: 11 }
