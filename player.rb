@@ -16,7 +16,7 @@ class Player < User
   end
 
   def show_actions
-    "#{actions.map { |key, value| "#{value} (#{key})"}.join(", ")}"
+    actions.map { |key, value| "#{value} (#{key})" }.join(', ').to_s
   end
 
   private

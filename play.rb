@@ -17,6 +17,6 @@ class Play
 
   def next_play?
     output("Next play? (y/n)")
-    input.downcase == "y"
+    input.casecmp("y").zero?
   end
 end

@@ -3,10 +3,10 @@ require_relative 'figure_card'
 require_relative 'ace_card'
 
 class Deck
-  SUITS = %w(♠ ♥ ♣ ♦)
-  NUM_CARDS = %w(2 3 4 5 6 7 8 9 10)
-  FIGURE_CARDS = %w(В Д К)
-  ACE_CARDS = %w(Т)
+  SUITS = %w[♠ ♥ ♣ ♦].freeze
+  NUM_CARDS = %w[2 3 4 5 6 7 8 9 10].freeze
+  FIGURE_CARDS = %w[В Д К].freeze
+  ACE_CARDS = %w[Т].freeze
 
   attr_reader :cards
 

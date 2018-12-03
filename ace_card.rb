@@ -2,7 +2,7 @@ require_relative 'card'
 
 class AceCard < Card
   def init_value
-    { min: min , max: max }
+    { min: min, max: max }
   end
 
   def min

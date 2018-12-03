@@ -7,6 +7,7 @@ class Bank
 
   def take(sum)
     return unless sum?(sum)
+
     self.sum -= sum
     sum
   end

@@ -31,7 +31,7 @@ class User
   end
 
   def show_cards
-    "#{cards.map(&:name).join(" ")}, points: #{points}"
+    "#{cards.map(&:name).join(' ')}, points: #{points}"
   end
 
   def hand_clear

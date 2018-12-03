@@ -14,7 +14,7 @@ class Round
     @player = player
     @player.init_actions
     @player.hand_clear
-    
+
     @bank = Bank.new
     @deck = Deck.new
   end
@@ -61,7 +61,7 @@ class Round
       winner.put_bank(sum)
     else
       output("Dead heat")
-      half_sum = sum/2
+      half_sum = sum / 2
       diler.put_bank(half_sum)
       player.put_bank(half_sum)
     end
@@ -82,7 +82,7 @@ class Round
 
   def next_round?
     output("Next round? (y/n)")
-    input.downcase == "y"
+    input.casecmp("y").zero?
   end
 
   private
