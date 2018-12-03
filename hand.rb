@@ -26,7 +26,13 @@ class Hand
     end
   end
 
+  def clear
+    self.cards = []
+  end
+
   private
+
+  attr_writer :cards
 
   def not_aces_cards
     cards.select { |card| card unless card.instance_of?(AceCard) }

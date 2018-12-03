@@ -2,8 +2,6 @@ require_relative 'bank'
 require_relative 'hand'
 
 class User
-  DEFAULT_RATE = 10
-
   attr_reader :name, :bank, :hand
 
   def initialize(name)
@@ -13,10 +11,36 @@ class User
   end
 
   def rate
-    bank.take(DEFAULT_RATE)
+    bank.take(default_rate)
   end
 
-  def take_win(sum)
+  def put_bank(sum)
     bank.put(sum)
+  end
+
+  def card(card)
+    hand.add_card(card)
+  end
+
+  def points
+    hand.points
+  end
+
+  def cards
+    hand.cards
+  end
+
+  def show_cards
+    "#{cards.map(&:name).join(" ")}, points: #{points}"
+  end
+
+  def hand_clear
+    hand.clear
+  end
+
+  protected
+
+  def default_rate
+    10
   end
 end

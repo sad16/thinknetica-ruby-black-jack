@@ -1,10 +1,8 @@
 class Bank
-  DEFAULT_SUM = 100
-
   attr_reader :sum
 
-  def initialize(sum = nil)
-    @sum = sum || DEFAULT_SUM
+  def initialize(sum = 0)
+    @sum = sum
   end
 
   def take(sum)
