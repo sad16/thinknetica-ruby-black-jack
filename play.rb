@@ -1,22 +1,27 @@
 require_relative "interfaces/io_interface"
+require_relative "diler"
+require_relative "player"
 require_relative "round"
 
 class Play
-  attr_reader :diler, :player, :bank
+  attr_reader :diler, :player
 
-  def initialize(diler, player)
-    @diler = diler
+  def initialize
+    @diler = Diler.new("Frank")
     @diler.put_bank(100)
-    @player = player
-    @player.put_bank(100)
   end
 
-  def round
+  def create_player(player_name)
+    self.player = Player.new(player_name)
+    player.put_bank(100)
+    player
+  end
+
+  def create_round
     Round.new(diler, player)
   end
 
-  def next_play?
-    output("Next play? (y/n)")
-    input.casecmp("y").zero?
-  end
+  private
+
+  attr_writer :player
 end

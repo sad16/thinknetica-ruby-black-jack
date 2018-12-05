@@ -20,53 +20,13 @@ class Round
   end
 
   def rates
-    output("<RATES>")
     bank.put(player.rate + diler.rate)
   end
 
-  def start
-    output("<START>")
+  def init
     deck.shuffle
-
     2.times { player.card(deck.card) }
     2.times { diler.card(deck.card) }
-
-    output("Player cards: #{player.show_cards}")
-    output("Dealer сards: * *")
-  end
-
-  def steps
-    output("<STEPS>")
-
-    loop do
-      break unless player_step
-
-      diler_step
-    end
-  end
-
-  def open
-    output("<OPEN>")
-    output("Player cards: #{player.show_cards}")
-    output("Dealer сards: #{diler.show_cards}")
-  end
-
-  def result
-    output("<RESULT>")
-    winner = self.winner
-    sum = bank.take(bank.sum)
-
-    if winner
-      output("Winner: #{winner.name}")
-      winner.put_bank(sum)
-    else
-      output("Dead heat")
-      half_sum = sum / 2
-      diler.put_bank(half_sum)
-      player.put_bank(half_sum)
-    end
-
-    output("Bank: #{player.bank.sum}")
   end
 
   def winner
@@ -80,34 +40,12 @@ class Round
     player_points > diler_points ? player : diler
   end
 
-  def next_round?
-    output("Next round? (y/n)")
-    input.casecmp("y").zero?
-  end
+  def prize
+    sum = bank.take(bank.sum)
+    return winner.put_bank(sum) if winner
 
-  private
-
-  def player_step
-    output("<PLAYER STEP>")
-    output("Actions: #{player.show_actions}")
-
-    case input
-    when "add"
-      player.actions.delete("add")
-      player.card(deck.card)
-      output("Player cards: #{player.show_cards}")
-      true
-    when "open"
-      open
-      false
-    when "pass"
-      player.actions.delete("pass")
-      true
-    end
-  end
-
-  def diler_step
-    output("<DILER STEP>")
-    diler.card(deck.card) if diler.points < diler.max_points
+    half_sum = sum/2
+    diler.put_bank(half_sum)
+    player.put_bank(half_sum)
   end
 end
